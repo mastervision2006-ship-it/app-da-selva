@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0A0F07;
+  --bg-card: #111608;
+  --bg-surface: #1A2010;
+  --amber: #E8A838;
+  --amber-light: #F5C060;
+  --green: #8CB369;
+  --text-primary: #F2F0E8;
+  --text-muted: #9CA88E;
+  --text-dim: #5C6652;
+  --border: rgba(140, 179, 105, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overscroll-behavior: none;
 }
+
+/* Scrollbar oculta em mobile */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+/* Safe area para notch/home indicator */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 8px); }
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.animate-pulse-dot { animation: pulse-dot 1.5s infinite; }
