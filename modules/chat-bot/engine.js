@@ -1,7 +1,27 @@
 import { DIETA_KNOWLEDGE } from './knowledge/dieta';
 import { MOTIVACAO_KNOWLEDGE } from './knowledge/motivacao';
 
-const ALL_KNOWLEDGE = [...DIETA_KNOWLEDGE, ...MOTIVACAO_KNOWLEDGE];
+// Hoist RegExp — não recriar a cada chamada (js-hoist-regexp)
+const RE_ACCENTS = /[\u0300-\u036f]/g;
+const RE_NON_ALNUM = /[^a-z0-9\s]/g;
+
+function normalizar(texto) {
+  return texto
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(RE_ACCENTS, '')
+    .replace(RE_NON_ALNUM, ' ');
+}
+
+// Pre-indexar gatilhos em Map para lookup O(1) (js-index-maps)
+// Estrutura: Map<gatilhoNormalizado, resposta>
+const GATILHO_INDEX = new Map();
+
+for (const item of [...DIETA_KNOWLEDGE, ...MOTIVACAO_KNOWLEDGE]) {
+  for (const gatilho of item.gatilhos) {
+    GATILHO_INDEX.set(normalizar(gatilho), item.resposta);
+  }
+}
 
 const RESPOSTAS_PADRAO = [
   `Boa pergunta! Deixa eu pensar... 🌿
@@ -32,31 +52,18 @@ A Dieta da Selva é baseada em **alimentação ancestral** — o que nossos ance
 Tem alguma dúvida específica sobre o protocolo? Pode perguntar à vontade!`,
 ];
 
-function normalizar(texto) {
-  return texto
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s]/g, ' ');
-}
-
 export function processarMensagem(mensagem) {
   const normalizada = normalizar(mensagem);
 
-  for (const item of ALL_KNOWLEDGE) {
-    for (const gatilho of item.gatilhos) {
-      const gatilhoNorm = normalizar(gatilho);
-      if (normalizada.includes(gatilhoNorm)) {
-        return item.resposta;
-      }
+  for (const [gatilho, resposta] of GATILHO_INDEX) {
+    if (normalizada.includes(gatilho)) {
+      return resposta;
     }
   }
 
-  // Fallback aleatório
   return RESPOSTAS_PADRAO[Math.floor(Math.random() * RESPOSTAS_PADRAO.length)];
 }
 
 export function getDelay() {
-  // Simula tempo de "digitação" da IA
   return 800 + Math.random() * 1200;
 }

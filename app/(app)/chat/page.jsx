@@ -20,10 +20,14 @@ Estou aqui para te ajudar com tudo sobre o Protocolo Dieta da Selva — dúvidas
 Como posso te ajudar hoje?`,
 };
 
+// Hoist RegExp fora da função — não recriar a cada render (js-hoist-regexp)
+const RE_BOLD = /\*\*(.*?)\*\*/g;
+const RE_NEWLINE = /\n/g;
+
 function renderTexto(texto) {
   return texto
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br/>');
+    .replace(RE_BOLD, '<strong>$1</strong>')
+    .replace(RE_NEWLINE, '<br/>');
 }
 
 export default function ChatPage() {
