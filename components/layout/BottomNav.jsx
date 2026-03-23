@@ -37,6 +37,15 @@ const tabs = [
     ),
   },
   {
+    href: '/treinos',
+    label: 'Treinos',
+    icon: (active) => (
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+        <path d="M6 4v16M18 4v16M3 8h3M18 8h3M3 16h3M18 16h3M6 12h12" stroke={active ? '#E8A838' : '#6b7280'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
     href: '/desafios',
     label: 'Desafios',
     icon: (active) => (
@@ -79,7 +88,7 @@ export default function BottomNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className="flex flex-col items-center gap-1 px-3 py-1"
+              className="flex flex-col items-center gap-0.5 px-1.5 py-1"
             >
               {tab.icon(active)}
               <span className={`text-[10px] font-medium ${active ? 'text-amber-400' : 'text-zinc-500'}`}>

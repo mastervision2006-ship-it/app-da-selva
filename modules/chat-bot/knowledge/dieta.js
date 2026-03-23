@@ -1,5 +1,59 @@
 export const DIETA_KNOWLEDGE = [
   {
+    gatilhos: ['o que é a dieta da selva', 'o que eh a dieta', 'como funciona a dieta da selva', 'principio', 'ancestral', 'historia'],
+    resposta: `🌿 A Dieta da Selva em essência:
+
+A Dieta da Selva é uma abordagem alimentar que prioriza alimentos in natura e ricos em micronutrientes, inspirada na alimentação ancestral humana.
+
+**O princípio central:**
+Coma proteína + gordura animal PRIMEIRO, até a saciedade. Depois, se quiser, adicione frutas naturais, tubérculos ou laticínios integrais.
+
+**Na prática:**
+• Proteína + gordura animal vêm primeiro — sempre
+• Não conte calorias — confie nos sinais do seu corpo
+• Elimine completamente os ultra-processados e óleos vegetais industrializados
+• Beba bastante água e mantenha eletrólitos equilibrados
+• Frutas, mel e iogurte integral são permitidos como complemento
+
+O corpo, quando alimentado com alimentos reais, aprende a regular naturalmente a quantidade ingerida. 🥩`,
+  },
+  {
+    gatilhos: ['versão', 'versoes', 'qual versao', 'basica', 'moderada', 'carnívorapura', 'carnivora pura', 'nivel'],
+    resposta: `🌿 Versões da Dieta da Selva:
+
+**Versão Básica** — Iniciantes
+Carnes, ovos, laticínios, frutas, tubérculos, arroz, feijão, saladas.
+Transição fácil, sem restrições drásticas.
+
+**Versão Moderada** — Emagrecimento acelerado
+Carnes, ovos, laticínios integrais, frutas com baixo açúcar, folhas.
+Elimina grãos e carboidratos industrializados.
+
+**Versão Carnívora** — Avançados (protocolo estrito)
+Apenas carnes, ovos, bacon, manteiga, queijos com baixo lactose.
+Para quem já adaptou o organismo e quer resultados máximos.
+
+Comece pela **Básica** e avance conforme se adaptar. Não existe versão errada — existe a versão certa para você agora. 💪`,
+  },
+  {
+    gatilhos: ['posso comer arroz', 'posso comer feijão', 'posso comer fruta', 'tubérculo', 'mandioca', 'batata', 'abacate', 'mel', 'castanha'],
+    resposta: `🥩 Alimentos complementares liberados na Dieta da Selva:
+
+✅ **Frutas in natura** (qualquer fruta, com moderação)
+✅ **Tubérculos** — batata, mandioca, inhame, cará
+✅ **Arroz branco** (versão básica)
+✅ **Feijão e leguminosas** (versão básica)
+✅ **Saladas e folhas verdes** — à vontade
+✅ **Abacate** — excelente fonte de gordura boa
+✅ **Mel puro** — como sobremesa natural
+✅ **Castanhas in natura** — sem adição de açúcar
+✅ **Azeite de oliva extravirgem**
+✅ **Óleo de coco**
+
+A regra é simples: **proteína + gordura animal PRIMEIRO**. Os itens acima vêm depois, como complemento.`,
+  },
+
+  {
     gatilhos: ['o que posso comer', 'o que eu posso comer', 'quais alimentos', 'alimentos permitidos', 'pode comer'],
     resposta: `Na Dieta da Selva você come o que a natureza criou para nos nutrir de verdade 🥩
 
