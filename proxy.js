@@ -26,7 +26,7 @@ export async function proxy(request) {
 
   const { pathname } = request.nextUrl;
 
-  const isProtected = ['/inicio', '/plano', '/receitas', '/desafios', '/chat', '/conta'].some(p => pathname.startsWith(p));
+  const isProtected = ['/inicio', '/plano', '/receitas', '/treinos', '/desafios', '/chat', '/conta'].some(p => pathname.startsWith(p));
   const isAuth = ['/login', '/cadastro', '/recuperar'].some(p => pathname.startsWith(p));
 
   if (isProtected && !user) {

@@ -19,7 +19,7 @@ export default function LoginPage() {
     const supabase = createBrowserClient();
     const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
     if (error) {
-      setErro(error.message);
+      setErro('Email ou senha incorretos.');
       setLoading(false);
       return;
     }
