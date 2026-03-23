@@ -65,6 +65,15 @@ const tabs = [
     ),
   },
   {
+    href: '/upgrades',
+    label: 'Premium',
+    icon: (active) => (
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke={active ? '#E8A838' : '#6b7280'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
     href: '/conta',
     label: 'Conta',
     icon: (active) => (
@@ -88,10 +97,10 @@ export default function BottomNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className="flex flex-col items-center gap-0.5 px-1.5 py-1"
+              className="flex flex-col items-center gap-0.5 px-1 py-1"
             >
               {tab.icon(active)}
-              <span className={`text-[10px] font-medium ${active ? 'text-amber-400' : 'text-zinc-500'}`}>
+              <span className={`text-[9px] font-medium ${active ? 'text-amber-400' : 'text-zinc-500'}`}>
                 {tab.label}
               </span>
             </Link>

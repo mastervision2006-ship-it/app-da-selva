@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { processarMensagem, getDelay } from '@/modules/chat-bot/engine';
+import { useUpgrades } from '@/context/UpgradesContext';
+import PaywallScreen from '@/components/upgrades/PaywallScreen';
 
 const SUGESTOES = [
   'O que posso comer?',
@@ -31,6 +33,15 @@ function renderTexto(texto) {
 }
 
 export default function ChatPage() {
+  const { temAcesso, hydrated } = useUpgrades();
+
+  if (!hydrated) return null;
+  if (!temAcesso('ia_selva')) return <PaywallScreen upgradeId="ia_selva" />;
+
+  return <ChatContent />;
+}
+
+function ChatContent() {
   const [msgs, setMsgs] = useState([MSG_BOAS_VINDAS]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);

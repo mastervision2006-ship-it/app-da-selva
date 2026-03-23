@@ -1,4 +1,5 @@
 import { AuthProvider } from '@/components/auth/AuthProvider';
+import { UpgradesProvider } from '@/context/UpgradesContext';
 import BottomNav from '@/components/layout/BottomNav';
 import { createServerClient } from '@/lib/supabase';
 
@@ -18,10 +19,12 @@ export default async function AppLayout({ children }) {
 
   return (
     <AuthProvider initialUser={user} initialProfile={profile}>
-      <div className="min-h-screen bg-[#0A0F07] max-w-md mx-auto relative">
-        <main className="pb-20">{children}</main>
-        <BottomNav />
-      </div>
+      <UpgradesProvider>
+        <div className="min-h-screen bg-[#0A0F07] max-w-md mx-auto relative">
+          <main className="pb-20">{children}</main>
+          <BottomNav />
+        </div>
+      </UpgradesProvider>
     </AuthProvider>
   );
 }

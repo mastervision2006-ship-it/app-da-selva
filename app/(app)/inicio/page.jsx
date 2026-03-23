@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { createBrowserClient } from '@/lib/supabase';
+import UpgradeHighlights from '@/components/upgrades/UpgradeHighlights';
 
 const DICA_DO_DIA = { texto: 'Beba pelo menos 2L de água hoje. A hidratação acelera a queima de gordura e reduz a fome.', emoji: '💧' };
 const REFEICAO_HOJE = { tipo: 'Almoço', titulo: 'Picanha grelhada com manteiga', descricao: '200g de picanha + 20g de manteiga + sal grosso', emoji: '🥩' };
@@ -68,6 +69,9 @@ export default function InicioPage() {
           </div>
         </div>
       </div>
+
+      {/* Upgrades em destaque */}
+      <UpgradeHighlights />
 
       {/* Refeição de hoje */}
       <p className="text-xs font-semibold text-[#5C6652] uppercase tracking-widest mb-3">PRÓXIMA REFEIÇÃO</p>
