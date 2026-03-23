@@ -2,12 +2,21 @@
 
 import { useState } from 'react';
 import { PLANO_21_DIAS, REFEICOES_LABEL } from '@/modules/plano-alimentar/data/plano';
+import { useAuth } from '@/components/auth/AuthProvider';
 
-const DIA_ATUAL = 4; // TODO: buscar do Supabase
+function calcularDiaAtual(dataInicio) {
+  if (!dataInicio) return 1;
+  const inicio = new Date(dataInicio);
+  const hoje = new Date();
+  const diff = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24)) + 1;
+  return Math.min(Math.max(diff, 1), 21);
+}
 
 export default function PlanoPage() {
+  const { profile } = useAuth();
+  const DIA_ATUAL = calcularDiaAtual(profile?.data_inicio);
   const [diaSelected, setDiaSelected] = useState(DIA_ATUAL);
-  const [semana, setSemana] = useState(1);
+  const [semana, setSemana] = useState(Math.ceil(DIA_ATUAL / 7));
 
   const diaData = PLANO_21_DIAS[diaSelected - 1];
   const diasDaSemana = PLANO_21_DIAS.filter(d => d.semana === semana);
