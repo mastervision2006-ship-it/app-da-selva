@@ -19,7 +19,13 @@ export default function LoginPage() {
     const supabase = createBrowserClient();
     const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
     if (error) {
-      setErro('Email ou senha incorretos.');
+      if (error.message?.toLowerCase().includes('email not confirmed')) {
+        setErro('Email não confirmado. Verifique sua caixa de entrada e clique no link de confirmação.');
+      } else if (error.message?.toLowerCase().includes('invalid login credentials') || error.message?.toLowerCase().includes('invalid credentials')) {
+        setErro('Email ou senha incorretos.');
+      } else {
+        setErro(error.message ?? 'Erro ao entrar. Tente novamente.');
+      }
       setLoading(false);
       return;
     }
