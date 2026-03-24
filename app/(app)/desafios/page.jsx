@@ -25,8 +25,13 @@ export default function DesafiosPage() {
       .eq('user_id', user.id)
       .eq('completou', true)
       .order('data', { ascending: true })
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) console.error('[desafios]', error);
         setCheckIns((data ?? []).map(r => r.data));
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('[desafios]', err);
         setLoading(false);
       });
   }, [user]);
