@@ -1,8 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useUpgrades } from '@/context/UpgradesContext';
+
+// Mapa de upgrade → rota de destino após compra
+const UPGRADE_ROUTES = {
+  ia_selva: '/chat',
+  nutri_coach: '/nutri-coach',
+  lista_compras: '/lista-compras',
+};
 
 export default function UpgradeModal({ upgrade, onClose }) {
   const { temAcesso } = useUpgrades();
@@ -318,6 +326,14 @@ function QrStep({ upgrade, tid, qrCodeSrc, pixPayload, onSuccess }) {
 
 /* ── Passo 4: Sucesso ── */
 function SuccessStep({ upgrade, onClose }) {
+  const router = useRouter();
+  const destino = UPGRADE_ROUTES[upgrade.id];
+
+  function handleIr() {
+    onClose();
+    if (destino) router.push(destino);
+  }
+
   return (
     <div className="flex flex-col items-center text-center py-4">
       <div className="text-5xl mb-3">{upgrade.emoji}</div>
@@ -328,10 +344,10 @@ function SuccessStep({ upgrade, onClose }) {
       <p className="text-sm font-semibold text-[#E8A838] mb-1">{upgrade.nome}</p>
       <p className="text-xs text-[#5C6652] mb-8">Seu upgrade foi ativado com sucesso.</p>
       <button
-        onClick={onClose}
+        onClick={handleIr}
         className="w-full py-4 rounded-2xl bg-[#E8A838] text-black font-bold text-base active:scale-95 transition-transform"
       >
-        COMEÇAR AGORA →
+        {destino ? `ACESSAR ${upgrade.nome.toUpperCase()} →` : 'COMEÇAR AGORA →'}
       </button>
     </div>
   );
